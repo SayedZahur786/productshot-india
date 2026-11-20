@@ -23,3 +23,5 @@ The free preview is not a paid launch. Interrupted reservations older than ten m
 - `scripts/cloud-smoke.ts`: real Neon and private storage with disposable records.
 
 The public policies link to the maintainer’s public profile, not a private-repository issue form. Self-service deletion is verified on the live site; a private support channel remains a merchant-launch requirement.
+
+Final review fixes: unknown/deleted session-cookie tokens are rejected on protected routes instead of creating accounts; only rate-limited session creation can mint identities. Server-side account lookup enforces the 30-day lifetime. Cleanup deletes objects associated with interrupted jobs before idempotent credit refunds, including uploads interrupted before the image row was committed.
