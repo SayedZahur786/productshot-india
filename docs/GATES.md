@@ -22,3 +22,13 @@ Final hosted header, policy, source scan, dependency and secret-scan evidence is
 - Placeholder scan: PASS, 81 authored text files (before final evidence append).
 - Demo media: PASS, 57.000 seconds, H.264 video plus non-silent AAC narration; caption frame visually inspected at 31 seconds.
 - Source isolation: project has its own Git repository; root already excludes project folders. Shared launch kit was not modified.
+
+## Final release
+- Production deployment: `dpl_9TpymAiW3MAgrXVqcvdZqguq8dYV`, app commit `bf98bad`; https://productshot-india.vercel.app.
+- Final HTTPS header-check and policy-check: PASS on that deployment.
+- Actual hosted Download button: PASS after the same-origin attachment fix; browser saved the JPG and self-service deletion completed.
+- Hosted interrupted-job recovery: PASS; orphan originals/outputs removed, reserved credit restored once, repeat cleanup safe. Disposable records deleted.
+- Final build: PASS; 5 unit tests and 4 end-to-end/browser tests pass. Typecheck passes.
+- Final history scan: PASS, no leaked secrets across all implementation commits.
+- Demo and screenshots: committed, real browser captures; 57-second MP4 includes voice and captions.
+- Commerce gate: NOT READY. No Razorpay merchant keys or live provider checkout test; private support and refund/tax terms must be confirmed before enabling paid checkout.
