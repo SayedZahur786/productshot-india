@@ -14,3 +14,4 @@
 - With the AGPL wrapper removed, first-party code is MIT licensed. ONNX Runtime is MIT and U2Net uses Apache-2.0; their license files are committed beside their runtime assets. Third-party photographs retain their own license.
 - Final unmodified shared perf-check succeeded after its clean rebuild: worst LCP 724 ms. The earlier Turbopack failure was environmental/cache-related, not a reason to bypass the gate.
 - Added durable image reservations with daily interrupted-job refund, and a least-privilege data-only database role. The migration owner URL stays local and is not sent to Vercel.
+- Live button testing found that an object-store redirect could open the image instead of saving it. Downloads now read a short-lived signed object URL server-side and stream through the same-origin route with explicit attachment disposition. This adds small Vercel egress but provides reliable browser downloads without exposing storage credentials.
