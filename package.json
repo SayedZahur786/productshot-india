@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "test": "node --import tsx --test tests/*.test.ts",
     "test:e2e": "node scripts/e2e.mjs",
-    "shots": "playwright test shots.spec.ts",
+    "shots": "node scripts/e2e.mjs shots.spec.ts",
     "migrate": "node scripts/migrate.mjs",
     "cloud-smoke": "node --import tsx scripts/cloud-smoke.ts"
   },
