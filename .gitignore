@@ -6,3 +6,7 @@ node_modules/
 .local/
 test-results/
 playwright-report/
+.neon
+
+*.tsbuildinfo
+.vercel

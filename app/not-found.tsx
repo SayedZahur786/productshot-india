@@ -1,0 +1,1 @@
+import Link from 'next/link';export default function NotFound(){return <main id="main" className="not-found"><p className="eyebrow">404 · OUT OF FRAME</p><h1>This page left the studio.</h1><p>Let’s get you back to your products.</p><Link href="/studio" className="button primary">Open photo studio</Link></main>}

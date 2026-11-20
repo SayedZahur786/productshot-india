@@ -1,0 +1,8 @@
+.local/
+docs/
+tests/
+.git/
+node_modules/
+.env*
+playwright-report/
+test-results/

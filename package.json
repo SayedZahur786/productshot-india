@@ -1,1 +1,41 @@
-{"name":"productshot-india","version":"0.1.0","private":true,"scripts":{"dev":"next dev","build":"next build","start":"next start","typecheck":"tsc --noEmit","lint":"eslint .","test":"tsx --test tests/*.test.ts","test:e2e":"playwright test","shots":"playwright test shots.spec.ts"},"dependencies":{"next":"latest","react":"latest","react-dom":"latest","sharp":"latest","@neondatabase/serverless":"latest","@aws-sdk/client-s3":"latest","@aws-sdk/s3-request-presigner":"latest","zod":"latest","@imgly/background-removal":"latest"},"devDependencies":{"typescript":"latest","@types/node":"latest","@types/react":"latest","@types/react-dom":"latest","tailwindcss":"latest","@tailwindcss/postcss":"latest","@playwright/test":"latest","tsx":"latest","eslint":"latest","eslint-config-next":"latest"}}
+{
+  "name": "productshot-india",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build --webpack",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "test:e2e": "node scripts/e2e.mjs",
+    "shots": "playwright test shots.spec.ts",
+    "migrate": "node scripts/migrate.mjs",
+    "cloud-smoke": "node --import tsx scripts/cloud-smoke.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "latest",
+    "@aws-sdk/s3-request-presigner": "latest",
+    "@neon/config": "^1.14.5",
+    "@neon/env": "^2.1.8",
+    "@neondatabase/serverless": "latest",
+    "next": "latest",
+    "onnxruntime-web": "^1.21.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "sharp": "latest"
+  },
+  "devDependencies": {
+    "@playwright/test": "latest",
+    "@tailwindcss/postcss": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "tailwindcss": "latest",
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}

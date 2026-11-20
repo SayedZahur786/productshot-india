@@ -1,0 +1,2 @@
+import {expiredImages,forgetImage,recoverJobs}from '@/lib/db';import {remove}from '@/lib/storage';
+export async function GET(req:Request){if(!process.env.CRON_SECRET||req.headers.get('authorization')!==`Bearer ${process.env.CRON_SECRET}`)return new Response('Unauthorized',{status:401});try{await recoverJobs();const rows=await expiredImages();for(const r of rows){await remove(r.original_key);await remove(r.output_key);await forgetImage(r.id);}return Response.json({removed:rows.length});}catch{return new Response('Cleanup failed; retry required',{status:500});}}

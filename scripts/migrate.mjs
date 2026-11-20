@@ -1,0 +1,2 @@
+import {neon}from '@neondatabase/serverless';import fs from 'node:fs';
+process.loadEnvFile('.env.local');const sql=neon(process.env.DATABASE_URL_UNPOOLED);const statements=fs.readFileSync('migrations/001_initial.sql','utf8').split(';').map(s=>s.trim()).filter(Boolean);for(const statement of statements)await sql.query(statement);console.log('Applied initial schema: accounts, images, orders and rate limits.');

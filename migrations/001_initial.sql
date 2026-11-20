@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS accounts (id text PRIMARY KEY, credits integer NOT NULL DEFAULT 2 CHECK(credits>=0), created_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS images (id uuid PRIMARY KEY, account_id text NOT NULL REFERENCES accounts(id) ON DELETE CASCADE, original_key text NOT NULL, output_key text NOT NULL, created_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS orders (id text PRIMARY KEY, account_id text NOT NULL REFERENCES accounts(id) ON DELETE CASCADE, paid boolean NOT NULL DEFAULT false, amount integer NOT NULL CHECK(amount=19900), created_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS rate_limits (key text PRIMARY KEY, count integer NOT NULL, reset_at timestamptz NOT NULL);
+ALTER TABLE accounts ADD COLUMN IF NOT EXISTS free_remaining integer NOT NULL DEFAULT 2;
+ALTER TABLE images ADD COLUMN IF NOT EXISTS credit_type text NOT NULL DEFAULT 'free';
+CREATE TABLE IF NOT EXISTS metrics_daily (day date PRIMARY KEY DEFAULT current_date, free_images integer NOT NULL DEFAULT 0, paid_images integer NOT NULL DEFAULT 0, paid_packs integer NOT NULL DEFAULT 0);
+CREATE INDEX IF NOT EXISTS images_owner ON images(account_id);
+CREATE INDEX IF NOT EXISTS images_expiry ON images(created_at);
+CREATE TABLE IF NOT EXISTS image_jobs (id uuid PRIMARY KEY, account_id text NOT NULL REFERENCES accounts(id) ON DELETE CASCADE, status text NOT NULL DEFAULT 'pending', credit_type text NOT NULL, created_at timestamptz NOT NULL DEFAULT now());
+CREATE INDEX IF NOT EXISTS jobs_recovery ON image_jobs(status,created_at);

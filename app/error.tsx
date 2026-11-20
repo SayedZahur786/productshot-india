@@ -1,0 +1,1 @@
+'use client';export default function ErrorPage({reset}:{reset:()=>void}){return <main id="main" className="not-found"><h1>Let’s try that again.</h1><p>The studio hit a problem. Your payment status has not been changed by this error.</p><button className="button primary" onClick={reset}>Try again</button></main>}

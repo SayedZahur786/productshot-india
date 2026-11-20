@@ -1,0 +1,1 @@
+import{randomBytes}from'node:crypto';import{spawnSync}from'node:child_process';const result=spawnSync('npx',['playwright','test'],{stdio:'inherit',env:{...process.env,LOCAL_PREVIEW:'1',RAZORPAY_WEBHOOK_SECRET:randomBytes(32).toString('hex')}});process.exit(result.status??1);

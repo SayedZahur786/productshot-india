@@ -1,0 +1,2 @@
+import {cookies}from 'next/headers';import {guard,failure}from '@/lib/auth';import {deleteAccount,accountImages}from '@/lib/db';import {remove}from '@/lib/storage';
+export async function DELETE(req:Request){try{const u=await guard(req);const rows=await accountImages(u.id);await Promise.all(rows.flatMap(r=>[remove(r.original_key),remove(r.output_key)]));await deleteAccount(u.id);(await cookies()).delete('ps-session');return Response.json({deleted:true});}catch(e){return failure(e);}}
